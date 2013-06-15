@@ -1,10 +1,8 @@
-//import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import org.robokind.api.animation.Animation;
 import org.robokind.api.animation.messaging.RemoteAnimationPlayerClient;
-//import org.robokind.api.animation.player.AnimationJob;
 import org.robokind.api.common.position.NormalizedDouble;
 import org.robokind.api.motion.Joint;
 import org.robokind.api.motion.messaging.RemoteRobot;
@@ -59,7 +57,6 @@ public class VisitorDemo extends JFrame {
                        
             // Animations to be used
             Animation introAnim = Robokind.loadAnimation("avatar_wave.anim.xml");
-            //Animation smile = Robokind.loadAnimation("RKM_smile.xml");
             // play the wave animation
             myPlayer.playAnimation(introAnim);
             animLen = introAnim.getLength();
@@ -145,8 +142,6 @@ public class VisitorDemo extends JFrame {
                 
                 else {
                     // some other input was entered
-                    //mySpeaker.speak("You're not so good at following instructions, huh?");
-                    //Robokind.sleep(5000);
                     JOptionPane.showMessageDialog(null, "That's not a number between 1 and 5!");
                 }
             }
@@ -159,9 +154,8 @@ public class VisitorDemo extends JFrame {
             // said no to both dancing and speaking
             if (!dance && !speak) {
                 // lol
-                //mySpeaker.speak("You're pretty boring, aren't you?");
-                //extra = JOptionPane.showInputDialog("Be less boring? Y/N");
-                extra = JOptionPane.showInputDialog("Would you like to see anything else? Y/N");
+                mySpeaker.speak("You're pretty boring, aren't you?");
+                extra = JOptionPane.showInputDialog("Be less boring? Y/N");
             }
             else {
                 mySpeaker.speak("Would you like to see anything else?");
@@ -275,20 +269,12 @@ public class VisitorDemo extends JFrame {
         JointId left_smile = new JointId(myRobot.getRobotId(), new Joint.Id(LEFT_SMILE));
         JointId right_smile = new JointId(myRobot.getRobotId(), new Joint.Id(RIGHT_SMILE));
         JointId neck_pitch = new JointId(myRobot.getRobotId(), new Joint.Id(NECK_PITCH));
-        myGoalPositions = new RobotPositionHashMap();
-        
-        //while (measureDouble!=1.0) {
-        // a loop to test certain joints
-          //  measure = JOptionPane.showInputDialog("Move my eyelids: (enter a number between 0 and 1)");
-            //measureDouble = Double.parseDouble(measure);
-            //myGoalPositions.put(eyes_pitch, new NormalizedDouble(measureDouble));
-            //myRobot.move(myGoalPositions, 1000);
-        //}
+
+        myGoalPositions = new RobotPositionHashMap(); 
         myGoalPositions.put(left_smile, new NormalizedDouble(0.9));
         myGoalPositions.put(right_smile, new NormalizedDouble(0.9));
         // look up, Zeno!
         myGoalPositions.put(neck_pitch, new NormalizedDouble(0.7));
-        //myGoalPositions.put(eyelids, new NormalizedDouble(0.9));
         myRobot.move(myGoalPositions, 1000);      
     }
 }
