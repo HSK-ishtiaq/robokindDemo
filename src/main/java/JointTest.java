@@ -133,7 +133,6 @@ public class JointTest {
         }
         // completion message
   		System.out.println("Test complete using joint number: "+this.jointIndex);
-  		System.out.println("Now setting joint to default value.");
   		double defaultPosition;
   		// There has GOT to be an easier way of doing this...
   		switch (this.jointIndex) {
@@ -212,6 +211,9 @@ public class JointTest {
 				break;				
 			default: defaultPosition = 0.5; //DONE
 		}
+		if (printOut) {
+			System.out.println("Now setting joint to default value: "+defaultPosition);
+		}	
   		// set to default
 		myGoalPositions.put(joint, new NormalizedDouble(defaultPosition));
 		// move over specified time
