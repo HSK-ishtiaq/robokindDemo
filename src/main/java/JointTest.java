@@ -1,16 +1,12 @@
 /**
  * JointTest.java
  * @author Lianne Meah
- * A simple commandline based class to test joints
+ * A simple command line based class to test joints
 */
 
-import org.robokind.api.animation.Animation;
-import org.robokind.api.animation.messaging.RemoteAnimationPlayerClient;
 import org.robokind.api.common.position.NormalizedDouble;
 import org.robokind.api.motion.Joint;
 import org.robokind.api.motion.messaging.RemoteRobot;
-import org.robokind.api.speech.messaging.RemoteSpeechServiceClient;
-import org.robokind.client.basic.*;
 import static org.robokind.api.motion.Robot.*;
 import static org.robokind.client.basic.RobotJoints.*;
 
@@ -20,7 +16,17 @@ public class JointTest {
 	private static Boolean printOut;
 	private static int timeFrame;
 	private static double interval;
-
+        private static RemoteRobot myRobot;
+        private static RobotPositionMap myGoalPositions;
+        
+        /*
+         * Main method for testing
+         * Purge later
+         */
+        public static void main(String[] args) {
+            // joint index 100, over 1000 milliseconds, 0.1 steps, with printing turned on
+            JointTest test = new JointTest(100, 0.1, 1000, true);
+        }
 	/*
 	 * Default constructor
 	 */
@@ -32,7 +38,7 @@ public class JointTest {
 	 * Constructor
 	 * @param jointIndex the index number of the joint; indices given in RobotJoints.java
 	 * @param interval the increment size for each test
-	 * @param timeFrame the number of millisconds to move the joint over - suggested 1000
+	 * @param timeFrame the number of milliseconds to move the joint over - suggested 1000
 	 * @param printOut boolean for printing, if set to true then will print to console
 	 */
 	public JointTest(int jointIndex, double interval, int timeFrame, Boolean printOut) {
@@ -72,7 +78,7 @@ public class JointTest {
 				break; 
 			case 401: joint = new JointId(myRobot.getRobotId(), new Joint.Id(LEFT_SHOULDER_ROLL));
 				break;
-			case 410: joint = new JointId(myRobot.getRobotId(), new Joint.Id(LEFT_ELBOW YAW));
+			case 410: joint = new JointId(myRobot.getRobotId(), new Joint.Id(LEFT_ELBOW_YAW));
 				break;
 			case 411: joint = new JointId(myRobot.getRobotId(), new Joint.Id(LEFT_ELBOW_PITCH));
 				break;
@@ -84,7 +90,7 @@ public class JointTest {
 				break; 
 			case 501: joint = new JointId(myRobot.getRobotId(), new Joint.Id(RIGHT_SHOULDER_ROLL));
 				break;
-			case 510: joint = new JointId(myRobot.getRobotId(), new Joint.Id(RIGHT_ELBOW YAW));
+			case 510: joint = new JointId(myRobot.getRobotId(), new Joint.Id(RIGHT_ELBOW_YAW));
 				break;
 			case 511: joint = new JointId(myRobot.getRobotId(), new Joint.Id(RIGHT_ELBOW_PITCH));
 				break;
@@ -185,7 +191,7 @@ public class JointTest {
 				break;
 			case 521: defaultPosition = 0.5; //grasp
 				break;
-			case 600: jdefaultPosition = 0.2; //DONE
+			case 600: defaultPosition = 0.2; //DONE
 				break;
 			case 601: defaultPosition = 0.181818181818182; //DONE
 				break;	
