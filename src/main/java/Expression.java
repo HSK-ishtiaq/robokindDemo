@@ -22,7 +22,7 @@ public class Expression {
     JointId right_smile = new JointId(myRobot.getRobotId(), new Joint.Id(RIGHT_SMILE));
     JointId neck_pitch = new JointId(myRobot.getRobotId(), new Joint.Id(NECK_PITCH));
         
-    /*
+    /**
      * Main method for testing/example usage
      */
     public static void main(String[] args) {
@@ -43,15 +43,16 @@ public class Expression {
             Robokind.sleep(1000);
         }
     }
-    /*
+    /**
      * Default constructor
      */
     public Expression() {
         
     }
     
-    /*
+    /**
      * Method to make robot smile
+     * @param timeFrame the amount of time to move joint over (milliseconds)
      */
     public void smile(int timeFrame) {
         this.myGoalPositions = new RobotPositionHashMap();
@@ -63,15 +64,17 @@ public class Expression {
         this.myGoalPositions.put(neck_pitch, new NormalizedDouble(0.7));
         myRobot.move(this.myGoalPositions, this.timeFrame);
     }
-    /*
+    /**
      * Method to make robot frown
+     * @param timeFrame the amount of time to move joint over (milliseconds)
      */
-    public void frown() {
+    public void frown(int timeFrame) {
         
     }
     
-    /*
+    /**
      * Method to make robot move to defaults
+     * @param timeFrame the amount of time to move joint over (milliseconds)
      */
     public void atDefaults(int timeFrame) {
         this.timeFrame = timeFrame;
@@ -82,22 +85,25 @@ public class Expression {
         this.myGoalPositions.put(neck_pitch, new NormalizedDouble(0.5));
         myRobot.move(this.myGoalPositions, this.timeFrame);
     }
-    /*
+    /**
      * Method to make robot close eyes
+     * @param timeFrame the amount of time to move joint over (milliseconds)
      */
     public void closeEyes(int timeFrame) {
         
     }
     
-    /* 
+    /** 
      * Method to make robot blink
+     * @param timeFrame the amount of time to move joint over (milliseconds)
      */
     public void blink(int timeFrame) {
         
     }
     
-    /* 
+    /** 
      * Method to make robot nod
+     * @param timeFrame the amount of time to move joint over (milliseconds)
      */    
     public void nod(int timeFrame) {
         this.timeFrame = timeFrame;
@@ -110,14 +116,24 @@ public class Expression {
         Robokind.sleep(1000);
     }
     
+     /** 
+     * Method to make robot look up
+     * @param timeFrame the amount of time to move joint over (milliseconds)
+     */    
     public void lookUp(int timeFrame) {
         this.timeFrame = timeFrame;
         this.myGoalPositions = new RobotPositionHashMap();
         this.myGoalPositions.put(neck_pitch, new NormalizedDouble(0.8));
         myRobot.move(this.myGoalPositions, this.timeFrame);
     }
-    
+     /** 
+     * Method to make robot look down
+     * @param timeFrame the amount of time to move joint over (milliseconds)
+     */ 
     public void lookDown(int timeFrame) {
-        
+        this.timeFrame = timeFrame;
+        this.myGoalPositions = new RobotPositionHashMap();
+        this.myGoalPositions.put(neck_pitch, new NormalizedDouble(0.2));
+        myRobot.move(this.myGoalPositions, this.timeFrame); 
     }
 }
