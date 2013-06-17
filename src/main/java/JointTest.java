@@ -136,7 +136,7 @@ public class JointTest {
         // make positions hash map
         myGoalPositions = new RobotPositionHashMap(); 
 
-        // loop; testing joints. Start at 0.1 and move up
+        // loop; testing joints. Start at 0 and move up in set intervals
         for (double i = 0.0; i<=1.0; i+=this.interval) {
         	// printing
         	if (this.printOut) {
