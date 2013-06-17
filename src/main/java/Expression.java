@@ -37,22 +37,30 @@ public class Expression {
         // make robot do something with face
         if (myRobot.isConnected()) {
             Expression expression = new Expression();
-            //expression.smile(1000);
-            //Robokind.sleep(1000);            
-            //expression.nod(1000);
-            //Robokind.sleep(500);
-            //expression.blink(500);
-            //Robokind.sleep(1000);
-            //expression.frown(500);
-            //Robokind.sleep(2000);
-            //expression.lookUp(500);
-            //Robokind.sleep(1000);
-            //expression.smile(500);
-            //Robokind.sleep(2000);    
-            expression.shakeHead(1000);
-            Robokind.sleep(200);
+            Boolean disagree = false;
+            Boolean happy = true;
+            if (disagree) {
+                expression.frown(500);
+                Robokind.sleep(800);
+                expression.shakeHead(800);
+                Robokind.sleep(200);
+            }
+            
+            if (happy) {
+                expression.lookUp(500);
+                Robokind.sleep(500);
+                expression.smile(500);
+                Robokind.sleep(500); 
+                expression.blink(500);
+                Robokind.sleep(1000);
+            }
+
+            // always set back to defaults to reduce strain
             expression.atDefaults(1000);
             Robokind.sleep(1000);
+            
+            Robokind.disconnect();
+            System.exit(0);
         }
     }
     /**
@@ -123,10 +131,10 @@ public class Expression {
         this.myGoalPositions = new RobotPositionHashMap();
         this.myGoalPositions.put(neck_pitch, new NormalizedDouble(0.8));
         myRobot.move(this.myGoalPositions, this.timeFrame);
-        Robokind.sleep(1000);
+        Robokind.sleep(500);
         this.myGoalPositions.put(neck_pitch, new NormalizedDouble(0.2));
         myRobot.move(this.myGoalPositions, this.timeFrame);
-        Robokind.sleep(1000);
+        Robokind.sleep(500);
     }
 
      /** 
