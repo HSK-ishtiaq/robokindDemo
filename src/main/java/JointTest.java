@@ -34,8 +34,10 @@ public class JointTest {
             UserSettings.setAnimationAddress(robotIP);
             // try to make connections
             myRobot = Robokind.connectRobot();
-            // joint index 100, over 1000 milliseconds, 0.1 steps, with printing turned on
-            JointTest test = new JointTest(310, 0.1, 1000, true);
+            // joint index x, over 1000 milliseconds, 0.1 steps, with printing turned on
+            if (myRobot.isConnected()) {
+                JointTest test = new JointTest(301, 0.1, 1000, true);
+            }
         }
 	/*
 	 * Default constructor
@@ -146,6 +148,7 @@ public class JointTest {
         	myGoalPositions.put(joint, new NormalizedDouble(i));
 			// move over specified time
         	myRobot.move(myGoalPositions, this.timeFrame);  
+                Robokind.sleep(2000);
         }
         // completion message
   		System.out.println("Test complete using joint number: "+this.jointIndex);
@@ -232,7 +235,7 @@ public class JointTest {
 		}	
   		// set to default
 		myGoalPositions.put(joint, new NormalizedDouble(defaultPosition));
-		// move over specified time
-        myRobot.move(myGoalPositions, this.timeFrame);
+		// move over 2000 milliseconds
+                myRobot.move(myGoalPositions, 2000);
 	}
 }
