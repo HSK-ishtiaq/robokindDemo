@@ -8,7 +8,9 @@ import org.robokind.api.common.position.NormalizedDouble;
 import org.robokind.api.motion.Joint;
 import org.robokind.api.motion.messaging.RemoteRobot;
 import static org.robokind.api.motion.Robot.*;
+import org.robokind.client.basic.Robokind;
 import static org.robokind.client.basic.RobotJoints.*;
+import org.robokind.client.basic.UserSettings;
 
 public class JointTest {
 	// variables for class
@@ -24,8 +26,16 @@ public class JointTest {
          * Purge later
          */
         public static void main(String[] args) {
+            String robotID = "myRobot";
+            String robotIP = "192.168.0.54";
+            // set respective addresses
+            UserSettings.setRobotId(robotID);
+            UserSettings.setRobotAddress(robotIP);
+            UserSettings.setAnimationAddress(robotIP);
+            // try to make connections
+            myRobot = Robokind.connectRobot();
             // joint index 100, over 1000 milliseconds, 0.1 steps, with printing turned on
-            JointTest test = new JointTest(100, 0.1, 1000, true);
+            JointTest test = new JointTest(310, 0.1, 1000, true);
         }
 	/*
 	 * Default constructor
@@ -128,7 +138,7 @@ public class JointTest {
         myGoalPositions = new RobotPositionHashMap(); 
 
         // loop; testing joints. Start at 0.1 and move up
-        for (double i = 0.1; i<1.0; i+=this.interval) {
+        for (double i = 0.0; i<=1.0; i+=this.interval) {
         	// printing
         	if (this.printOut) {
         		System.out.println("Moving joint to position "+i+" over "+this.timeFrame+" milliseconds:");
