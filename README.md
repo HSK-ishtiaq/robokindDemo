@@ -16,6 +16,6 @@ Classes
 
 **Lianne Meah**
 
-+ [http://twitter.com/mdo](http://twitter.com/subalary)
-+ [http://github.com/mdo](http://github.com/subalary)
++ [http://twitter.com/subalary](http://twitter.com/subalary)
++ [http://github.com/subalary](http://github.com/subalary)
 
