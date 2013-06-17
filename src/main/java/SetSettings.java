@@ -2,7 +2,7 @@ import org.robokind.client.basic.UserSettings;
 
 /**
  * SetSettings.java
- * @author Lianne Meah
+ * @author Lianne Meah <lianne.meah@gmail.com>
  */
 public class SetSettings {
     // class variables
