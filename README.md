@@ -12,5 +12,10 @@ Classes
 * Expression.java => class to make robot use facial expressions and neck movements 
 
 ***
+## Author
 
-Authored by Lianne Meah (Subalary), University of Sheffield
+**Lianne Meah**
+
++ [http://twitter.com/mdo](http://twitter.com/subalary)
++ [http://github.com/mdo](http://github.com/subalary)
+
