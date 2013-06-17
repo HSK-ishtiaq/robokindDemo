@@ -11,4 +11,6 @@ Classes
 * SetSettings.java => simple class which sets all the addresses used in connecting to robot
 * Expression.java => class to make robot use facial expressions and neck movements 
 
+***
+
 Authored by Lianne Meah (Subalary), University of Sheffield
