@@ -14,5 +14,6 @@ Example Java project using RoboKind Basic API. For use with R50 robot.
 ***
 ### Author
 
-**Lianne Meah** (www.liannemeah.co.uk)
+**Lianne Meah**
+The University of Sheffield
 
