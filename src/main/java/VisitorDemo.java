@@ -1,8 +1,10 @@
+//import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import org.robokind.api.animation.Animation;
 import org.robokind.api.animation.messaging.RemoteAnimationPlayerClient;
+//import org.robokind.api.animation.player.AnimationJob;
 import org.robokind.api.common.position.NormalizedDouble;
 import org.robokind.api.motion.Joint;
 import org.robokind.api.motion.messaging.RemoteRobot;
@@ -33,7 +35,7 @@ public class VisitorDemo extends JFrame {
         String robotID = "myRobot";
         String robotIP = "192.168.0.54";
         // set respective addresses
-        vd.allSettings(robotID, robotIP);
+        SetSettings settings = new SetSettings(robotID, robotIP);
         // try to make connections
         myRobot = Robokind.connectRobot();
         myPlayer = Robokind.connectAnimationPlayer();
@@ -57,6 +59,7 @@ public class VisitorDemo extends JFrame {
                        
             // Animations to be used
             Animation introAnim = Robokind.loadAnimation("avatar_wave.anim.xml");
+            //Animation smile = Robokind.loadAnimation("RKM_smile.xml");
             // play the wave animation
             myPlayer.playAnimation(introAnim);
             animLen = introAnim.getLength();
@@ -142,6 +145,8 @@ public class VisitorDemo extends JFrame {
                 
                 else {
                     // some other input was entered
+                    //mySpeaker.speak("You're not so good at following instructions, huh?");
+                    //Robokind.sleep(5000);
                     JOptionPane.showMessageDialog(null, "That's not a number between 1 and 5!");
                 }
             }
@@ -154,8 +159,9 @@ public class VisitorDemo extends JFrame {
             // said no to both dancing and speaking
             if (!dance && !speak) {
                 // lol
-                mySpeaker.speak("You're pretty boring, aren't you?");
-                extra = JOptionPane.showInputDialog("Be less boring? Y/N");
+                //mySpeaker.speak("You're pretty boring, aren't you?");
+                //extra = JOptionPane.showInputDialog("Be less boring? Y/N");
+                extra = JOptionPane.showInputDialog("Would you like to see anything else? Y/N");
             }
             else {
                 mySpeaker.speak("Would you like to see anything else?");
@@ -184,23 +190,6 @@ public class VisitorDemo extends JFrame {
             }      
         }
     } 
-        
-    /*
-     * method to set addresses for sensors, speechJob, etc.
-     * @param robotID - String "myRobot"
-     * @param robotIP - A String which is the robot's IP address
-     */
-    public void allSettings(String robotID, String robotIP) {
-        UserSettings.setRobotId(robotID);
-        UserSettings.setRobotAddress(robotIP);
-        UserSettings.setAnimationAddress(robotIP);
-        UserSettings.setSpeechAddress(robotIP);
-        UserSettings.setSensorAddress(robotIP);
-        UserSettings.setAccelerometerAddress(robotIP);
-        UserSettings.setGyroscopeAddress(robotIP);
-        UserSettings.setCompassAddress(robotIP);
-        UserSettings.setCameraAddress(robotIP);
-    }
     
     public VisitorDemo() {
         // GUI window within it's own method
@@ -235,45 +224,22 @@ public class VisitorDemo extends JFrame {
     }
     
     /*
-     * method to make connections; refuses to throw the exception however
-     * @param robot Boolean for connecting with a robot; true asks for a connection
-     * @param animation Boolean for animation connections; true asks for a connection
-     * @param speech Boolean for connecting with the speech service; true asks for a connection
-     */
-    public static void makeConnections(Boolean robot, Boolean animation, Boolean speech) throws Exception {
-        if (robot) {
-            // connect to the robot
-            myRobot = Robokind.connectRobot();
-        }
-        if (animation) {
-            // connect to the animation player
-            myPlayer = Robokind.connectAnimationPlayer();
-        }
-        if (speech) {
-            // connect to the speech service
-           mySpeaker = Robokind.connectSpeechService(); 
-        }     
-    }
-    
-    /*
      * method to make Zeno smile
      * Use this on startup so he doesn't look so zoned out!
      */
     public static void zenoSmile() {
         String measure;
         double measureDouble = 0.5;
-        JointId eyelids = new JointId(myRobot.getRobotId(), new Joint.Id(EYELIDS)); 
-        JointId eyes_pitch = new JointId(myRobot.getRobotId(), new Joint.Id(EYES_PITCH)); 
-        JointId left_eye_yaw = new JointId(myRobot.getRobotId(), new Joint.Id(LEFT_EYE_YAW)); 
-        JointId right_eye_yaw = new JointId(myRobot.getRobotId(), new Joint.Id(RIGHT_EYE_YAW));
+        // joints
         JointId left_smile = new JointId(myRobot.getRobotId(), new Joint.Id(LEFT_SMILE));
         JointId right_smile = new JointId(myRobot.getRobotId(), new Joint.Id(RIGHT_SMILE));
         JointId neck_pitch = new JointId(myRobot.getRobotId(), new Joint.Id(NECK_PITCH));
-
-        myGoalPositions = new RobotPositionHashMap(); 
+        // new position map
+        myGoalPositions = new RobotPositionHashMap();
+        // make the robot smile
         myGoalPositions.put(left_smile, new NormalizedDouble(0.9));
         myGoalPositions.put(right_smile, new NormalizedDouble(0.9));
-        // look up, Zeno!
+        // makes the robot look up
         myGoalPositions.put(neck_pitch, new NormalizedDouble(0.7));
         myRobot.move(myGoalPositions, 1000);      
     }
