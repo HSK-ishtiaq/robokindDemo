@@ -19,21 +19,27 @@ import static org.robokind.client.basic.RobotJoints.*;
 
 public class App {
   
+    // class variables
     private static RemoteRobot myRobot;
     private static RemoteAnimationPlayerClient myPlayer;
     private static RemoteSpeechServiceClient mySpeaker;
     private static RobotPositionMap myGoalPositions;
     
+    /**
+     * Main method to show example usage
+     */
     public static void main(String[] args) {
         long animLen;
         
         ///////////////////////////////////////////
-        /// SETTINGS AND CONFIG
+        /// CONFIG
         ///////////////////////////////////////////
         
         String robotID = "myRobot";
         String robotIP = "192.168.0.54";
         
+        // SETTINGS ///
+        /// this is handled in SetSettings.java ////
         UserSettings.setRobotId(robotID);
         UserSettings.setRobotAddress(robotIP);
         UserSettings.setAnimationAddress(robotIP);
@@ -43,10 +49,18 @@ public class App {
         UserSettings.setGyroscopeAddress(robotIP);
         UserSettings.setCompassAddress(robotIP);
         UserSettings.setCameraAddress(robotIP);
+        /// END SETTINGS ///
         
+        // make connections
         myRobot = Robokind.connectRobot();
         myPlayer = Robokind.connectAnimationPlayer();
         mySpeaker = Robokind.connectSpeechService();
+        mySensors = Robokind.connectSensors();
+        myAcc = Robokind.connectAccelerometer();
+        myGyro = Robokind.connectGyroscope();
+        myCompass = Robokind.connectCompass();
+        myCamera = Robokind.connectCameraService();
+        myImage = Robokind.connectImageRegionService();
   
         ///////////////////////////////////////////
         /// LOADING ANIMATIONS
@@ -55,15 +69,14 @@ public class App {
         Animation introAnim = Robokind.loadAnimation("avatar_wave.anim.xml");
         AnimationJob introJob = myPlayer.playAnimation(introAnim);
         animLen = introAnim.getLength();
-        //Robokind.sleep(500 + animLen);
+        Robokind.sleep(500 + animLen);
         
         ///////////////////////////////////////////
         /// SPEAKING
         ///////////////////////////////////////////
         
         // make the robot speak
-        //mySpeaker.speak("Hello.");
-        //mySpeaker.speak("Hello Roger. Lianne is controlling me from a Java class.");
+        mySpeaker.speak("Hello, my name is Zeno.");
         Robokind.sleep(500 + animLen);
         
         ///////////////////////////////////////////
@@ -78,15 +91,6 @@ public class App {
         // ->0 lowers forearm, ->1 raises forearm horizontally
         myGoalPositions.put(left_elbow_pitch, new NormalizedDouble(0.99));
         myRobot.move(myGoalPositions, 1000);
-        
-        //JointId waist = new JointId(myRobot.getRobotId(), new Joint.Id(WAIST));
-        //JointId leg = new JointId(
-        //myRobot.getRobotId(), new Joint.Id(RIGHT_HIP_YAW));
-        
-        //myGoalPositions = new RobotPositionHashMap();
-        //myGoalPositions.put(waist, new NormalizedDouble(1.0));
-        //myGoalPositions.put(leg, new NormalizedDouble(0.5));
-        //myRobot.move(myGoalPositions, 1000);
         
         ///////////////////////////////////////////
         /// DISCONNECT AND EXIT
