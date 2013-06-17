@@ -9,14 +9,14 @@ public class SetSettings {
     private static String robotID;
     private static String robotIP;
     
-    /* 
-     * default constructor
+    /** 
+     * Default constructor
      */
     public SetSettings() {
         
     }
     
-    /*
+    /**
      * Sets all addresses for connecting
      * @param robotIP the IP address of the robot
      * @param myRobot the remote Robot
