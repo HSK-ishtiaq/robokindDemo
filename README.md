@@ -1,6 +1,6 @@
 robokindDemo
 ============
-Example Java project using robokind basic API. For use with R50 robot.
+Example Java project using RoboKind Basic API. For use with R50 robot.
 
 Classes
 -------
