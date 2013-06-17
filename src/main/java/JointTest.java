@@ -1,6 +1,6 @@
 /**
  * JointTest.java
- * @author Lianne Meah
+ * @author Lianne Meah <lianne.meah@gmail.com>
  * A simple command line based class to test joints
 */
 
