@@ -1,13 +1,10 @@
-import org.robokind.api.animation.messaging.RemoteAnimationPlayerClient;
 import org.robokind.api.motion.messaging.RemoteRobot;
-import org.robokind.api.speech.messaging.RemoteSpeechServiceClient;
 import org.robokind.client.basic.*;
 import org.jflux.api.core.Listener;
 import org.robokind.api.sensor.*;
 import org.robokind.avrogen.sensor.*;
 import org.robokind.api.sensor.gpio.RemoteGpioServiceClient;
 import org.robokind.api.sensor.imu.*;
-import static org.robokind.api.motion.Robot.*;
 
 public class SensorsTest {
     // variables for class
@@ -141,7 +138,7 @@ public class SensorsTest {
         }
     }
     
-    /*
+    /**
      * Method to return all sensor pin directions and values
      * @param sensors - sensors client obtained upon connecting sensors
      */
