@@ -10,7 +10,6 @@ import org.robokind.api.motion.messaging.RemoteRobot;
 import static org.robokind.api.motion.Robot.*;
 import org.robokind.client.basic.Robokind;
 import static org.robokind.client.basic.RobotJoints.*;
-import org.robokind.client.basic.UserSettings;
 
 public class JointTest {
 	// variables for class
@@ -22,21 +21,19 @@ public class JointTest {
         private static RobotPositionMap myGoalPositions;
         
         /*
-         * Main method for testing/example usage
+         * Main method for testing
          * Purge later
          */
         public static void main(String[] args) {
             String robotID = "myRobot";
             String robotIP = "192.168.0.54";
-            // set respective addresses
-            UserSettings.setRobotId(robotID);
-            UserSettings.setRobotAddress(robotIP);
-            UserSettings.setAnimationAddress(robotIP);
-            // try to make connections
+            // set addresses
+            SetSettings settings = new SetSettings(robotID, robotIP);
+            // make connection
             myRobot = Robokind.connectRobot();
             // joint index x, over 1000 milliseconds, 0.1 steps, with printing turned on
             if (myRobot.isConnected()) {
-                JointTest test = new JointTest(301, 0.1, 1000, true);
+                JointTest test = new JointTest(521, 0.1, 1000, true);
             }
         }
 	/*
@@ -153,7 +150,7 @@ public class JointTest {
         // completion message
   		System.out.println("Test complete using joint number: "+this.jointIndex);
   		double defaultPosition;
-  		// run switch on joint index to retrieve default position
+  		// There has GOT to be an easier way of doing this...
   		switch (this.jointIndex) {
 			// set joint
 			case 100: defaultPosition = 0.5;
@@ -166,17 +163,17 @@ public class JointTest {
 				break;
 			case 300: defaultPosition = 0.542372881355932;
 				break;
-			case 301: defaultPosition = 0.442105263157895;
+			case 301: defaultPosition = 0.442105263157895; 
 				break;
 			case 310: defaultPosition = 0.67;
 				break;
-			case 311: defaultPosition = 0.5;
+			case 311: defaultPosition = 0.5; 
 				break;
-			case 312: defaultPosition = 0.5;
+			case 312: defaultPosition = 0.5; 
 				break;				
-			case 320: defaultPosition = 0.5;
+			case 320: defaultPosition = 0.5; 
 				break;
-			case 321: defaultPosition = 0.5;
+			case 321: defaultPosition = 0.5; 
 				break;				
 			case 322: defaultPosition = 0.364464692482916;
 				break;
@@ -194,7 +191,7 @@ public class JointTest {
 				break;
 			case 500: defaultPosition = 0.185185185185185;
 				break; 
-			case 501: defaultPosition = 0.055555555555556;
+			case 501: defaultPosition = 0.055555555555556; 
 				break;
 			case 510: defaultPosition = 0.5;
 				break;
@@ -202,31 +199,31 @@ public class JointTest {
 				break;
 			case 520: defaultPosition = 0.5; 
 				break;
-			case 521: defaultPosition = 0.5; 
+			case 521: defaultPosition = 0.5;
 				break;
 			case 600: defaultPosition = 0.2; 
 				break;
-			case 601: defaultPosition = 0.181818181818182; 
+			case 601: defaultPosition = 0.181818181818182;
 				break;	
-			case 602: defaultPosition = 0.1; 
+			case 602: defaultPosition = 0.1;
 				break;
-			case 610: defaultPosition = 0.909090909090909; 
+			case 610: defaultPosition = 0.909090909090909;
 				break;
-			case 620: defaultPosition = 0.7; 
+			case 620: defaultPosition = 0.7;
 				break;
-			case 621: defaultPosition = 0.5; 
+			case 621: defaultPosition = 0.5;
 				break;
-			case 700: defaultPosition = 0.2; 
+			case 700: defaultPosition = 0.2;
 				break;
-			case 701: defaultPosition = 0.818181818181818; 
+			case 701: defaultPosition = 0.818181818181818;
 				break;	
 			case 702: defaultPosition = 0.1;
 				break;
 			case 710: defaultPosition = 0.909090909090909;
 				break;
-			case 720: defaultPosition = 0.7; 
+			case 720: defaultPosition = 0.7;
 				break;
-			case 721: defaultPosition = 0.5; 
+			case 721: defaultPosition = 0.5;
 				break;				
 			default: defaultPosition = 0.5;
 		}
