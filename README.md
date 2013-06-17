@@ -2,8 +2,8 @@ robokindDemo
 ============
 Example Java project using RoboKind Basic API. For use with R50 robot.
 
-Classes
--------
+## Classes
+
 * App.java => demonstrates the basics in main method
 * VisitorDemo.java => beefs up the basics a little
 * SensorTest.java => the RoboKind example of how to test the sensors
@@ -12,10 +12,7 @@ Classes
 * Expression.java => class to make robot use facial expressions and neck movements 
 
 ***
-## Author
+### Author
 
-**Lianne Meah**
-
-+ [http://twitter.com/subalary](http://twitter.com/subalary)
-+ [http://github.com/subalary](http://github.com/subalary)
+**Lianne Meah** (www.liannemeah.co.uk)
 
