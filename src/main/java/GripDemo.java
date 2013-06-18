@@ -8,6 +8,7 @@ import javax.swing.*;
 
 /**
  * GripDemo.java
+ * Demonstrates robot's grip and also how to use Expression.java
  * @author Lianne Meah <lianne.meah@gmail.com>
  */
 public class GripDemo {
@@ -15,6 +16,7 @@ public class GripDemo {
     private static RobotPositionMap myGoalPositions;
     private static RemoteRobot myRobot;
     private static int timeFrame;
+    
     // left joints
     JointId left_shoulder_pitch = new JointId(myRobot.getRobotId(), new Joint.Id(LEFT_SHOULDER_PITCH));
     JointId left_shoulder_roll = new JointId(myRobot.getRobotId(), new Joint.Id(LEFT_SHOULDER_ROLL));
@@ -29,9 +31,9 @@ public class GripDemo {
     JointId right_elbow_pitch = new JointId(myRobot.getRobotId(), new Joint.Id(RIGHT_ELBOW_PITCH));
     JointId right_wrist_yaw = new JointId(myRobot.getRobotId(), new Joint.Id(RIGHT_WRIST_YAW));
     JointId right_hand_grasp = new JointId(myRobot.getRobotId(), new Joint.Id(RIGHT_HAND_GRASP));
-    
+
     /**
-     * Main method - needs to be purged
+     * Main method
      * @param args 
      */
     public static void main(String[] args) {
@@ -42,7 +44,9 @@ public class GripDemo {
         // make connection
         myRobot = Robokind.connectRobot();
         if (myRobot.isConnected()) {
-            // do some stuff with the grip
+            // set up expression for facial expressions
+            Expression expression = new Expression();
+            expression.setExpressionJoints(myRobot);
             GripDemo grip = new GripDemo();
             // String for which arm should be used
             String arm = "L";
@@ -51,10 +55,13 @@ public class GripDemo {
             Robokind.sleep(2000);
             grip.openGrasp(500, arm);
             Robokind.sleep(2000);
+            
+            // make the robot smile
+            expression.smile(500, myRobot);
+            
             // control the robot's grip
             String shouldGrip = JOptionPane.showInputDialog("Shall I grip now?");
             shouldGrip = shouldGrip.toUpperCase();
-            System.out.println(shouldGrip);
             if (shouldGrip.equals("Y")) {
                 // grip down
                 grip.closeGrasp(500, arm);
@@ -66,9 +73,11 @@ public class GripDemo {
                 Robokind.sleep(3000);
             }
             
-            
             // return to defaults to joints aren't strained
-            grip.atDefaults(1000);
+            grip.atDefaults(500);
+            Robokind.sleep(1000);
+            // also set joints used for expressions back to default
+            expression.setExpressionDefaults(1000, myRobot);
             Robokind.sleep(5000);
         }
         
@@ -163,6 +172,11 @@ public class GripDemo {
         myRobot.move(this.myGoalPositions, this.timeFrame);
     }
     
+    /**
+     * method to make robot raise forearm
+     * @param timeFrame the amount of time to move over (milliseconds)
+     * @param arm which arm to use (left/right)
+     */
     public void armUp(int timeFrame, String arm) {
         this.timeFrame = timeFrame;
         this.myGoalPositions = new RobotPositionHashMap();
