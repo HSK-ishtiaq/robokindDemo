@@ -42,11 +42,25 @@ public class GripDemo {
         myRobot = Robokind.connectRobot();
         if (myRobot.isConnected()) {
             // do some stuff with the grip
+            GripDemo grip = new GripDemo();
+            String arm = "L";
+            // move left arm out
+            grip.armOut(1000, arm);
+            Robokind.sleep(2000);
+            grip.atDefaults(1000);
+            Robokind.sleep(5000);
         }
         
         // disconnnect and exit
         Robokind.disconnect();
         System.exit(0);
+    }
+    
+    /**
+     * Default constructor
+     */
+    public GripDemo() {
+        
     }
     
     /**
