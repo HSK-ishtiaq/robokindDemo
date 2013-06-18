@@ -4,6 +4,7 @@ import org.robokind.api.motion.messaging.RemoteRobot;
 import static org.robokind.api.motion.Robot.*;
 import org.robokind.client.basic.Robokind;
 import static org.robokind.client.basic.RobotJoints.*;
+import javax.swing.*;
 
 /**
  * GripDemo.java
@@ -43,10 +44,30 @@ public class GripDemo {
         if (myRobot.isConnected()) {
             // do some stuff with the grip
             GripDemo grip = new GripDemo();
+            // String for which arm should be used
             String arm = "L";
-            // move left arm out
+            // move arm out
             grip.armOut(1000, arm);
             Robokind.sleep(2000);
+            grip.openGrasp(500, arm);
+            Robokind.sleep(2000);
+            // control the robot's grip
+            String shouldGrip = JOptionPane.showInputDialog("Shall I grip now?");
+            shouldGrip = shouldGrip.toUpperCase();
+            System.out.println(shouldGrip);
+            if (shouldGrip.equals("Y")) {
+                // grip down
+                grip.closeGrasp(500, arm);
+                Robokind.sleep(500);
+                // flail test
+                grip.armUp(500, arm);
+                Robokind.sleep(500);
+                grip.elbowOut(500, arm);
+                Robokind.sleep(3000);
+            }
+            
+            
+            // return to defaults to joints aren't strained
             grip.atDefaults(1000);
             Robokind.sleep(5000);
         }
@@ -84,27 +105,80 @@ public class GripDemo {
         myRobot.move(this.myGoalPositions, this.timeFrame); 
     }
     
-    /**
-     * method to make robot 
-     * @param timeFrame the amount of time to move over
-     * @param arm the arm to be used: 0:Left, 1:Right
-     */
-    public void grasp(int timeFrame, String arm) {
-        
-    }
-    
-        
-    /*public void grab(int timeFrame) {
+        public void elbowOut(int timeFrame, String arm) {
         this.timeFrame = timeFrame;
         this.myGoalPositions = new RobotPositionHashMap();
-        this.myGoalPositions.put(left_shoulder_pitch, new NormalizedDouble(0.5));
+        // move left arm if 0 is given
+        arm = arm.toUpperCase();
+        if (arm.equals("L") || arm.equals("LEFT")) {
+            this.myGoalPositions.put(left_elbow_yaw, new NormalizedDouble(0.2));
+        }
+        // move right arm if 1 is given
+        else if (arm.equals("R") || arm.equals("RIGHT")) {
+            this.myGoalPositions.put(right_elbow_yaw, new NormalizedDouble(0.2));
+        }
+        // now move the arm
         myRobot.move(this.myGoalPositions, this.timeFrame); 
-        Robokind.sleep(200);
-        this.myGoalPositions.put(left_wrist_yaw, new NormalizedDouble(0.9));
-        this.myGoalPositions.put(left_hand_grasp, new NormalizedDouble(0.9));
-        myRobot.move(this.myGoalPositions, this.timeFrame); 
-        Robokind.sleep(200);
-    }*/
+    }
+    
+    /**
+     * method to make robot grasp
+     * @param timeFrame the amount of time to move over (milliseconds)
+     * @param arm the arm to be used: left/right
+     */
+    public void openGrasp(int timeFrame, String arm) {
+        this.timeFrame = timeFrame;
+        this.myGoalPositions = new RobotPositionHashMap();
+        // move left arm if 0 is given
+        arm = arm.toUpperCase();
+        if (arm.equals("L") || arm.equals("LEFT")) {
+            this.myGoalPositions.put(left_hand_grasp, new NormalizedDouble(1.0));
+        }
+        // move right arm if 1 is given
+        else if (arm.equals("R") || arm.equals("RIGHT")) {
+            this.myGoalPositions.put(right_hand_grasp, new NormalizedDouble(1.0));
+        }
+        // now move the arm
+        myRobot.move(this.myGoalPositions, this.timeFrame);
+    }
+    
+    /**
+     * method to make robot grip something
+     * @param timeFrame the amount of time to move over (milliseconds)
+     * @param arm which arm to use (left/right)
+     */
+    public void closeGrasp(int timeFrame, String arm) {
+        this.timeFrame = timeFrame;
+        this.myGoalPositions = new RobotPositionHashMap();
+        // move left arm if 0 is given
+        arm = arm.toUpperCase();
+        if (arm.equals("L") || arm.equals("LEFT")) {
+            this.myGoalPositions.put(left_hand_grasp, new NormalizedDouble(0.6));
+        }
+        // move right arm if 1 is given
+        else if (arm.equals("R") || arm.equals("RIGHT")) {
+            this.myGoalPositions.put(right_hand_grasp, new NormalizedDouble(0.6));
+        }
+        // now move the arm
+        myRobot.move(this.myGoalPositions, this.timeFrame);
+    }
+    
+    public void armUp(int timeFrame, String arm) {
+        this.timeFrame = timeFrame;
+        this.myGoalPositions = new RobotPositionHashMap();
+        // move left arm if 0 is given
+        arm = arm.toUpperCase();
+        if (arm.equals("L") || arm.equals("LEFT")) {
+            this.myGoalPositions.put(left_elbow_pitch, new NormalizedDouble(0.9));
+        }
+        // move right arm if 1 is given
+        else if (arm.equals("R") || arm.equals("RIGHT")) {
+            this.myGoalPositions.put(right_elbow_pitch, new NormalizedDouble(0.9));
+        }
+        // now move the arm
+        myRobot.move(this.myGoalPositions, this.timeFrame);
+    }
+    
     
     /**
      * Method to make robot move to defaults
@@ -120,6 +194,12 @@ public class GripDemo {
         this.myGoalPositions.put(left_elbow_pitch, new NormalizedDouble(0.111111111111111));
         this.myGoalPositions.put(left_wrist_yaw, new NormalizedDouble(0.5));
         this.myGoalPositions.put(left_hand_grasp, new NormalizedDouble(0.5));
+        this.myGoalPositions.put(right_shoulder_pitch, new NormalizedDouble(0.185185185185185));
+        this.myGoalPositions.put(right_shoulder_roll, new NormalizedDouble(0.055555555555556));
+        this.myGoalPositions.put(right_elbow_yaw, new NormalizedDouble(0.5));
+        this.myGoalPositions.put(right_elbow_pitch, new NormalizedDouble(0.111111111111111));
+        this.myGoalPositions.put(right_wrist_yaw, new NormalizedDouble(0.5));
+        this.myGoalPositions.put(right_hand_grasp, new NormalizedDouble(0.5));
         myRobot.move(this.myGoalPositions, this.timeFrame);
     }
 }
