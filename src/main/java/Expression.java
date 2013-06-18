@@ -23,13 +23,7 @@ public class Expression {
     JointId neck_pitch = new JointId(myRobot.getRobotId(), new Joint.Id(NECK_PITCH));
     JointId neck_yaw = new JointId(myRobot.getRobotId(), new Joint.Id(NECK_YAW));
     JointId brows = new JointId(myRobot.getRobotId(), new Joint.Id(BROWS));
-    JointId left_shoulder_pitch = new JointId(myRobot.getRobotId(), new Joint.Id(LEFT_SHOULDER_PITCH));
-    JointId left_shoulder_roll = new JointId(myRobot.getRobotId(), new Joint.Id(LEFT_SHOULDER_ROLL));
-    JointId left_elbow_yaw = new JointId(myRobot.getRobotId(), new Joint.Id(LEFT_ELBOW_YAW));
-    JointId left_elbow_pitch = new JointId(myRobot.getRobotId(), new Joint.Id(LEFT_ELBOW_PITCH));
-    JointId left_wrist_yaw = new JointId(myRobot.getRobotId(), new Joint.Id(LEFT_WRIST_YAW));
-    JointId left_hand_grasp = new JointId(myRobot.getRobotId(), new Joint.Id(LEFT_HAND_GRASP));
-        
+
     /**
      * Main method for testing/example usage
      */
@@ -195,13 +189,6 @@ public class Expression {
         this.myGoalPositions.put(neck_yaw, new NormalizedDouble(0.5));
         this.myGoalPositions.put(eyelids, new NormalizedDouble(0.442105263157895));
         this.myGoalPositions.put(brows, new NormalizedDouble(0.542372881355932));
-        // arms and shoulders, etc
-        this.myGoalPositions.put(left_shoulder_pitch, new NormalizedDouble(0.185185185185185));
-        this.myGoalPositions.put(left_shoulder_roll, new NormalizedDouble(0.055555555555556));
-        this.myGoalPositions.put(left_elbow_yaw, new NormalizedDouble(0.5));
-        this.myGoalPositions.put(left_elbow_pitch, new NormalizedDouble(0.111111111111111));
-        this.myGoalPositions.put(left_wrist_yaw, new NormalizedDouble(0.5));
-        this.myGoalPositions.put(left_hand_grasp, new NormalizedDouble(0.5));
         myRobot.move(this.myGoalPositions, this.timeFrame);
     }
 }
