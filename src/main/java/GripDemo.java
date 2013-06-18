@@ -55,12 +55,13 @@ public class GripDemo {
             Robokind.sleep(2000);
             grip.openGrasp(500, arm);
             Robokind.sleep(2000);
-            
+            expression.lookUp(500, myRobot);
+            Robokind.sleep(500);
             // make the robot smile
             expression.smile(500, myRobot);
             
             // control the robot's grip
-            String shouldGrip = JOptionPane.showInputDialog("Shall I grip now?");
+            String shouldGrip = JOptionPane.showInputDialog("Have you given me something to hold? Y/N");
             shouldGrip = shouldGrip.toUpperCase();
             if (shouldGrip.equals("Y")) {
                 // grip down
@@ -162,11 +163,11 @@ public class GripDemo {
         // move left arm if 0 is given
         arm = arm.toUpperCase();
         if (arm.equals("L") || arm.equals("LEFT")) {
-            this.myGoalPositions.put(left_hand_grasp, new NormalizedDouble(0.6));
+            this.myGoalPositions.put(left_hand_grasp, new NormalizedDouble(0.4));
         }
         // move right arm if 1 is given
         else if (arm.equals("R") || arm.equals("RIGHT")) {
-            this.myGoalPositions.put(right_hand_grasp, new NormalizedDouble(0.6));
+            this.myGoalPositions.put(right_hand_grasp, new NormalizedDouble(0.4));
         }
         // now move the arm
         myRobot.move(this.myGoalPositions, this.timeFrame);
