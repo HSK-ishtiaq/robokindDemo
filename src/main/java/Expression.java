@@ -45,7 +45,6 @@ public class Expression {
             Expression expression = new Expression();
             Boolean disagree = false;
             Boolean happy = false;
-            Boolean grab = true;
             if (disagree) {
                 expression.frown(500);
                 Robokind.sleep(800);
@@ -62,11 +61,6 @@ public class Expression {
                 Robokind.sleep(500); 
                 expression.blink(500);
                 Robokind.sleep(1000);
-            }
-            
-            if (grab) {
-                expression.grab(2000);
-                Robokind.sleep(3000);
             }
 
             // always set back to defaults to reduce strain
@@ -185,18 +179,6 @@ public class Expression {
         this.myGoalPositions = new RobotPositionHashMap();
         this.myGoalPositions.put(neck_pitch, new NormalizedDouble(0.2));
         myRobot.move(this.myGoalPositions, this.timeFrame); 
-    }
-    
-    public void grab(int timeFrame) {
-        this.timeFrame = timeFrame;
-        this.myGoalPositions = new RobotPositionHashMap();
-        this.myGoalPositions.put(left_shoulder_pitch, new NormalizedDouble(0.5));
-        myRobot.move(this.myGoalPositions, this.timeFrame); 
-        Robokind.sleep(200);
-        this.myGoalPositions.put(left_wrist_yaw, new NormalizedDouble(0.9));
-        this.myGoalPositions.put(left_hand_grasp, new NormalizedDouble(0.9));
-        myRobot.move(this.myGoalPositions, this.timeFrame); 
-        Robokind.sleep(200);
     }
     
      /**
