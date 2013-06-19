@@ -38,8 +38,10 @@ public class App {
         String robotID = "myRobot";
         String robotIP = "192.168.0.54";
         
-        // SETTINGS ///
-        /// this is handled in SetSettings.java ////
+        // SETTINGS - this is handled in SetSettings.java ////
+        ///////////// use the following://////////////////////
+        SetSettings settings = new SetSettings(robotID, robotIP);
+        //////////// instead of: /////////////////////////////
         UserSettings.setRobotId(robotID);
         UserSettings.setRobotAddress(robotIP);
         UserSettings.setAnimationAddress(robotIP);
@@ -51,7 +53,7 @@ public class App {
         UserSettings.setCameraAddress(robotIP);
         /// END SETTINGS ///
         
-        // make connections
+        // make connections - connect whatever you need
         myRobot = Robokind.connectRobot();
         myPlayer = Robokind.connectAnimationPlayer();
         mySpeaker = Robokind.connectSpeechService();
