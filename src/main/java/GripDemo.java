@@ -201,20 +201,7 @@ public class GripDemo {
      */
     public void atDefaults(int timeFrame) {
         this.timeFrame = timeFrame;
-        this.myGoalPositions = new RobotPositionHashMap();
-        // push joints back to defaults
-        this.myGoalPositions.put(left_shoulder_pitch, new NormalizedDouble(0.185185185185185));
-        this.myGoalPositions.put(left_shoulder_roll, new NormalizedDouble(0.055555555555556));
-        this.myGoalPositions.put(left_elbow_yaw, new NormalizedDouble(0.5));
-        this.myGoalPositions.put(left_elbow_pitch, new NormalizedDouble(0.111111111111111));
-        this.myGoalPositions.put(left_wrist_yaw, new NormalizedDouble(0.5));
-        this.myGoalPositions.put(left_hand_grasp, new NormalizedDouble(0.5));
-        this.myGoalPositions.put(right_shoulder_pitch, new NormalizedDouble(0.185185185185185));
-        this.myGoalPositions.put(right_shoulder_roll, new NormalizedDouble(0.055555555555556));
-        this.myGoalPositions.put(right_elbow_yaw, new NormalizedDouble(0.5));
-        this.myGoalPositions.put(right_elbow_pitch, new NormalizedDouble(0.111111111111111));
-        this.myGoalPositions.put(right_wrist_yaw, new NormalizedDouble(0.5));
-        this.myGoalPositions.put(right_hand_grasp, new NormalizedDouble(0.5));
+        this.myGoalPositions = myRobot.getDefaultPositions();
         myRobot.move(this.myGoalPositions, this.timeFrame);
     }
 }
