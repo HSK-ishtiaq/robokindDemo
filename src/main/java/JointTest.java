@@ -33,8 +33,11 @@ public class JointTest {
             myRobot = Robokind.connectRobot();
             // joint index x, over 1000 milliseconds, 0.1 steps, with printing turned on
             if (myRobot.isConnected()) {
-                JointTest test = new JointTest(421, 0.1, 1000, true);
+                JointTest test = new JointTest(610, 0.1, 350, true);
             }
+            
+            Robokind.disconnect();
+            System.exit(0);
         }
         
 	/**
@@ -151,7 +154,7 @@ public class JointTest {
         // completion message
   		System.out.println("Test complete using joint number: "+this.jointIndex);
   		double defaultPosition;
-  		// There has GOT to be an easier way of doing this...
+                // done the long way round so we have a list of default values
   		switch (this.jointIndex) {
 			// set joint
 			case 100: defaultPosition = 0.5;
@@ -208,7 +211,7 @@ public class JointTest {
 				break;	
 			case 602: defaultPosition = 0.1;
 				break;
-			case 610: defaultPosition = 0.909090909090909;
+			case 610: defaultPosition = 0.5; //0.909090909090909; //no?
 				break;
 			case 620: defaultPosition = 0.7;
 				break;
@@ -220,7 +223,7 @@ public class JointTest {
 				break;	
 			case 702: defaultPosition = 0.1;
 				break;
-			case 710: defaultPosition = 0.909090909090909;
+			case 710: defaultPosition = 0.5; //0.909090909090909;
 				break;
 			case 720: defaultPosition = 0.7;
 				break;
