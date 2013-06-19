@@ -154,14 +154,8 @@ public class Expression {
      */
     public void setExpressionDefaults(int timeFrame, RemoteRobot myRobot) {
         this.timeFrame = timeFrame;
-        this.myGoalPositions = new RobotPositionHashMap();
+        this.myGoalPositions = myRobot.getDefaultPositions();
         // push joints back to defaults
-        this.myGoalPositions.put(this.left_smile, new NormalizedDouble(0.5));
-        this.myGoalPositions.put(this.right_smile, new NormalizedDouble(0.5));
-        this.myGoalPositions.put(this.neck_pitch, new NormalizedDouble(0.5));
-        this.myGoalPositions.put(this.neck_yaw, new NormalizedDouble(0.5));
-        this.myGoalPositions.put(this.eyelids, new NormalizedDouble(0.442105263157895));
-        this.myGoalPositions.put(this.brows, new NormalizedDouble(0.542372881355932));
         myRobot.move(this.myGoalPositions, this.timeFrame);
     }
 }
