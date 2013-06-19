@@ -19,12 +19,7 @@ public class SensorsTest {
         String robotID = "myRobot";
         String robotIP = "192.168.0.54";
         // set respective addresses
-        UserSettings.setRobotId(robotID);
-        UserSettings.setRobotAddress(robotIP);
-        UserSettings.setSensorAddress(robotIP);
-        UserSettings.setAccelerometerAddress(robotIP);
-        UserSettings.setGyroscopeAddress(robotIP);
-        UserSettings.setCompassAddress(robotIP);
+        SetSettings settings = new SetSettings(robotID, robotIP);
         // make connections
         myRobot = Robokind.connectRobot();
         mySensors = Robokind.connectSensors();
