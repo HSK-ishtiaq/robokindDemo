@@ -62,6 +62,7 @@ public class Expression {
         this.myGoalPositions.put(this.eyelids, new NormalizedDouble(0.5));
         myRobot.move(this.myGoalPositions, this.timeFrame);
     }
+    
     /**
      * Method to make robot frown
      * @param timeFrame the amount of time to move joint over (milliseconds)
@@ -88,6 +89,18 @@ public class Expression {
         this.timeFrame = timeFrame;
         this.myGoalPositions = new RobotPositionHashMap();
         this.myGoalPositions.put(eyelids, new NormalizedDouble(0.0));
+        myRobot.move(this.myGoalPositions, this.timeFrame); 
+    }
+    
+    /**
+     * Method to make robot open eyes
+     * @param timeFrame the amount of time to move joint over (milliseconds)
+     * @param myRobot the connected RemoteRobot
+     */
+    public void openEyes(int timeFrame, RemoteRobot myRobot) {
+        this.timeFrame = timeFrame;
+        this.myGoalPositions = new RobotPositionHashMap();
+        this.myGoalPositions.put(eyelids, new NormalizedDouble(0.5));
         myRobot.move(this.myGoalPositions, this.timeFrame); 
     }
     
@@ -180,7 +193,7 @@ public class Expression {
         myRobot.move(this.myGoalPositions, this.timeFrame); 
     }
     
-        /** 
+    /** 
      * Method to make robot look down
      * @param timeFrame the amount of time to move joint over (milliseconds)
      * @param myRobot the connected RemoteRobot
