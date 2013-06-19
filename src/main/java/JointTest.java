@@ -211,7 +211,7 @@ public class JointTest {
 				break;	
 			case 602: defaultPosition = 0.1;
 				break;
-			case 610: defaultPosition = 0.5; //0.909090909090909; //no?
+			case 610: defaultPosition = 0.5; 
 				break;
 			case 620: defaultPosition = 0.7;
 				break;
@@ -223,7 +223,7 @@ public class JointTest {
 				break;	
 			case 702: defaultPosition = 0.1;
 				break;
-			case 710: defaultPosition = 0.5; //0.909090909090909;
+			case 710: defaultPosition = 0.5; 
 				break;
 			case 720: defaultPosition = 0.7;
 				break;
