@@ -2,8 +2,8 @@ robokindDemo
 ============
 Example Java project using RoboKind Basic API. For use with R50 robot.
 
-## This project has been moved to the RoboKind repository.
-Some major refactoring has taken place and this repository is no longer being updated.
+## This project has been moved to the [RoboKind repository] (http://www.github.com/subalary/RoboKind) .
+Some major refactoring has taken place and the robokindDemo repository is no longer being updated.
 
 ### Classes (with main method; can be run)
 
