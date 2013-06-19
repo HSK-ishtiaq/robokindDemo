@@ -34,5 +34,7 @@ public class SetSettings {
         UserSettings.setGyroscopeAddress(robotIP);
         UserSettings.setCompassAddress(robotIP);
         UserSettings.setCameraAddress(robotIP);
+        UserSettings.setImageRegionAddress(robotIP);
+        UserSettings.setImageRegionId("0");
     }
 }
